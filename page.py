@@ -19,25 +19,36 @@ class LoginSubmitInput(BasePageElement):
     locator = (By.CSS_SELECTOR, '#gogogo .submit')
 
 
+class MenuAuthButtonTextAuth(BasePageElement):
+    locator = (By.CSS_SELECTOR, '.x-ph__menu__button__text_auth')
+
+
 class BasePage(object):
     def __init__(self, driver):
         self.driver = driver
 
 
 class LoginPage(BasePage):
-    login = LoginInput()
-    domain = DomainSelect()
-    password = PasswordInput()
+    loginInput = LoginInput()
+    domainSelect = DomainSelect()
+    passwordInput = PasswordInput()
     loginSubmit = LoginSubmitInput()
+    textAuth = MenuAuthButtonTextAuth()
 
-    def authorize(self):
-        self.login = 'tech-testing-ha2-13'
-        self.domain.select_option('@bk.ru')
-        self.password = 'Pa$$w0rD-13'
+    def authorize(self, login, domain, password):
+        self.login = login
+        self.domain = domain
+        self.password = password
+
+        self.loginInput = login
+        self.domainSelect.select_option(domain)
+        self.passwordInput = password
         self.loginSubmit.click()
 
     def is_authorized(self):
-        return True
+        user_name = self.textAuth.text()
+
+        return user_name == self.login + self.domain
 
 
 class SearchResultsPage(BasePage):

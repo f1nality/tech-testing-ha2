@@ -27,6 +27,15 @@ class BasePageElement(object):
         except Exception:
             pass
 
+    def text(self):
+        wait = WebDriverWait(self.driver, 10)
+
+        try:
+            element = wait.until(EC.presence_of_element_located(self.locator))
+            return element.text
+        except Exception:
+            pass
+
     def click(self):
         wait = WebDriverWait(self.driver, 10)
 

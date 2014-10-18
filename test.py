@@ -11,7 +11,7 @@ class PythonOrgSearch(unittest.TestCase):
     def test_login_page(self):
         login_page = page.LoginPage(self.driver)
 
-        login_page.authorize()
+        login_page.authorize('tech-testing-ha2-13', '@bk.ru', 'Pa$$w0rD-13')
         assert login_page.is_authorized()
 
     def tearDown(self):
