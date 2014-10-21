@@ -1,13 +1,13 @@
 #!/usr/bin/env python2
-import os
 import unittest
 import sys
-from test import PythonOrgSearch
+
+from tests.target_mail_ru import TargetMailRuTestCase
 
 
 if __name__ == '__main__':
     suite = unittest.TestSuite((
-        unittest.makeSuite(PythonOrgSearch),
+        unittest.makeSuite(TargetMailRuTestCase),
     ))
 
     result = unittest.TextTestRunner().run(suite)
