@@ -20,6 +20,9 @@ class TargetMailRuTestCase(unittest.TestCase):
 
         self.__authorize()
 
+    def tearDown(self):
+        self.driver.quit()
+
     def __authorize(self):
         login_page = LoginPage(self.driver)
         login_page.authorize(self.login, self.domain, self.password)
